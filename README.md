@@ -35,7 +35,6 @@ $ systemctl start dhcpd
 $ systemctl status dhcpd
 ```
 
-![dhcp.png](dhcp.png)
 
 ## Configuration DNS
 
