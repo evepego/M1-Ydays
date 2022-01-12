@@ -118,5 +118,5 @@ $ write
 ```bash
 $ sh ip ospf neighbor
 $ sh ip ospf database
-sh ip route
+$ sh ip route
 ```
