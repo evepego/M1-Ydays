@@ -55,24 +55,19 @@ $ systemctl status nginx
 ![srv_web.png](srv_web.png)
 
 ### Installer PHP
-```
-sudo apt install php-fpm
-```
-Activer PHP dans Nginx
+`sudo apt install php-fpm`
+
+Activer PHP dans Nginx : 
 ```
 cd /etc/nginx
 sudo nano sites-enabled/default
 ```
-toruver la ligne `index index.html index.htm;`
+trouver la ligne `index index.html index.htm;`  
 Ajouter `index.php`  après `index` pour ressembler à ceci:
 ```
 index index.php index.html index.htm;
 ```
 
+### Héberger son site sur le server
 
-## Héberger son site sur le server
-Nginx préinstalle une page index.html qui se trouve dans : `cd / var / www /`  
-pour ouvrir le fichier : 
-```
-sudo nano index.html
-```
+Nginx préinstalle une page index.html qui se trouve dans : `cd /var/www/`  
