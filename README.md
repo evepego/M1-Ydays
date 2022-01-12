@@ -35,6 +35,8 @@ $ systemctl start dhcpd
 $ systemctl status dhcpd
 ```
 
+![dhcp.png](dhcp.png)
+
 ## Configuration DNS
 
 ```bash
@@ -71,3 +73,50 @@ index index.php index.html index.htm;
 ### Héberger son site sur le server
 
 Nginx préinstalle une page index.html qui se trouve dans : `cd /var/www/`  
+
+## Configuration Routeurs OSPF
+* R2 :
+```bash
+$ conf t
+$ router ospf 1
+$ router-id 2.2.2.2
+$ network 10.2.10.0 0.0.0.255 area 0
+$ network 10.2.30.0 0.0.0.255 area 0
+$ network 2.2.2.0 0.0.0.255 area 0
+$ network 3.3.3.0 0.0.0.255 area 0
+$ passive-interface fastEthernet 0/0
+$ exit
+$ exit
+$ write
+```
+* R3:
+```bash
+$ conf t
+$ router ospf 1
+$ router-id 3.3.3.3
+$ network 10.2.20.0 0.0.0.255 area 0
+$ network 3.3.3.0 0.0.0.255 area 0
+$ network 4.4.4.4 0.0.0.255 area 0
+$ passive-interface fastEthernet 0/0
+$ exit
+$ exit
+$ write
+```
+* R4 :
+```bash
+$ conf t
+$ router ospf 1
+$ router-id 4.4.4.4
+$ network 2.2.2.0 0.0.0.255 area 0
+$ network 4.4.4.0 0.0.0.255 area 0
+$ passive-interface fastEthernet 0/0
+$ exit
+$ exit
+$ write
+```
+* Vérification de la configuration :
+```bash
+$ sh ip ospf neighbor
+$ sh ip ospf database
+sh ip route
+```
